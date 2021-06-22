@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/fragmentFirst">
+    app:startDestination="@id/fragmentSearch">
 
     <fragment
         android:id="@+id/fragmentFirst"
         android:name="com.iamshekhargh.wikidhundoo.ui.first.FragmentFirst"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_first" />
+        tools:layout="@layout/fragment_first" >
+        <action
+            android:id="@+id/action_fragmentFirst_to_fragmentSearch"
+            app:destination="@id/fragmentSearch" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.iamshekhargh.wikidhundoo.ui.search.FragmentSearch"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" />
 </navigation>
