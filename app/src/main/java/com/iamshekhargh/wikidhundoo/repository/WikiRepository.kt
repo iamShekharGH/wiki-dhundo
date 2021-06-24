@@ -1,9 +1,7 @@
 package com.iamshekhargh.wikidhundoo.repository
 
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
-import androidx.lifecycle.asLiveData
 import com.iamshekhargh.wikidhundoo.database.PagesDao
 import com.iamshekhargh.wikidhundoo.network.WikiApi
 import com.iamshekhargh.wikidhundoo.network.response.ResponseWikiList
@@ -11,9 +9,6 @@ import com.iamshekhargh.wikidhundoo.network.response.itemResponse.ResponseSearch
 import com.iamshekhargh.wikidhundoo.util.Resource
 import com.iamshekhargh.wikidhundoo.util.networkBoundResource
 import dagger.hilt.android.scopes.ActivityScoped
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
 import javax.inject.Inject
 
 
@@ -25,14 +20,8 @@ import javax.inject.Inject
 @ActivityScoped
 class WikiRepository @Inject constructor(
     private val api: WikiApi,
-    private val scope: CoroutineScope,
     private val dao: PagesDao,
-    private val app: Application
 ) {
-//
-//    private val searchQueryChannel = Channel<String>()
-//    private val searchQueryAsFlow = searchQueryChannel.receiveAsFlow()
-//    private val searchQueryAsLiveData = searchQueryAsFlow.asLiveData()
 
     var querytext = ""
 

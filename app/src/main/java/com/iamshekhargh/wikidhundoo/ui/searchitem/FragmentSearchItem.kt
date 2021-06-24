@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -64,12 +65,16 @@ class FragmentSearchItem : Fragment(R.layout.fragment_search_item) {
                             )
                         findNavController().navigate(action)
                     }
+                    is SearchItemEvents.ShowProgressBar -> {
+                        showProgressBar(event.value)
+                    }
                 }
             }
         }
     }
 
     private fun loadInformation(page: ResponseSearchItem) {
+        showProgressBar(false)
         binding.apply {
             val p = page.query.pages[0]
             Glide.with(fragmentItemImage).load(p.thumbnail.source).centerCrop()
@@ -86,5 +91,13 @@ class FragmentSearchItem : Fragment(R.layout.fragment_search_item) {
 
     private fun showSnackbar(text: String) {
         Snackbar.make(requireView(), text, Snackbar.LENGTH_SHORT).show()
+    }
+
+    private fun showProgressBar(hmm: Boolean) {
+        binding.apply {
+            fragmentItemProgressbar.isVisible = hmm
+            fragmentItemProgressbar.isIndeterminate = hmm
+        }
+
     }
 }

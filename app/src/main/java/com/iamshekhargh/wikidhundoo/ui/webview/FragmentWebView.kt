@@ -28,8 +28,9 @@ class FragmentWebView @Inject constructor() : Fragment(R.layout.fragment_webview
         binding.apply {
             fragmentWebview.webViewClient = WebViewClient()
             fragmentWebview.apply {
-                loadUrl("https://en.wikipedia.org/?curid=${viewModel.url}" ?: "www.google.com")
+                loadUrl("https://en.m.wikipedia.org/?curid=${viewModel.url}" ?: "www.google.com")
                 settings.javaScriptEnabled = true
+//                setInitialScale(100)
             }
 
         }

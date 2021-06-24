@@ -46,10 +46,8 @@ object AppModule {
     fun provideRepoInstance2(
         api: WikiApi,
         dao: PagesDao,
-        scope: CoroutineScope,
-        app: Application
     ): WikiRepository =
-        WikiRepository(api, scope, dao, app)
+        WikiRepository(api, dao)
 
 
     @Provides

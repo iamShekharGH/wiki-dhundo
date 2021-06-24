@@ -39,7 +39,7 @@ class SearchAdapter constructor(
                 }
                 itemSearchTitle.text = p.title
                 itemSearchDescription.text = p.pageimage
-//                if (p.thumbnail.source.isNotEmpty())
+
                 val t = p.thumbnail
                 var imgUrl = ""
                 if (t != null) {

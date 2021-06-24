@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
+                android:visibility="gone"
                 app:layout_collapseMode="pin"
                 app:title="Search Item"
                 app:titleTextColor="@color/white" />
@@ -64,9 +65,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="8dp"
-        android:src="@mipmap/ic_webview"
-        app:layout_anchor="@id/fragment_item_appbar"
-        app:layout_anchorGravity="bottom|end" />
+        android:layout_margin="16dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_webview_foreground"
+        app:layout_anchorGravity="bottom|end"
+        app:maxImageSize="48dp" />
+
+    <ProgressBar
+        android:id="@+id/fragment_item_progressbar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_gravity="bottom|center"
+        android:visibility="gone"
+        tools:visibility="visible" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

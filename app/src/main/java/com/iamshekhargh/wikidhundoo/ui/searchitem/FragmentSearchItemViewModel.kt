@@ -28,6 +28,7 @@ class FragmentSearchItemViewModel @Inject constructor(
     val eventsFlow = events.receiveAsFlow()
 
     fun getCompletePageInfo() = viewModelScope.launch {
+        events.send(SearchItemEvents.ShowProgressBar(true))
         val res = repo.getPageInfo(page?.pageid.toString())
         if (res.data != null) {
             events.send(SearchItemEvents.SendPageInfo(res.data))
@@ -49,4 +50,5 @@ sealed class SearchItemEvents {
     data class ShowSnackbar(val text: String) : SearchItemEvents()
     data class SendPageInfo(val page: ResponseSearchItem) : SearchItemEvents()
     data class OpenWebView(val url: String) : SearchItemEvents()
+    data class ShowProgressBar(val value: Boolean) : SearchItemEvents()
 }

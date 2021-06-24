@@ -54,6 +54,7 @@
                 <ImageView
                     android:id="@+id/fragment_search_search_iv"
                     android:layout_width="64dp"
+                    android:elevation="16dp"
                     android:layout_height="64dp"
                     android:src="@mipmap/ic_launcher_foreground"
                     app:layout_constraintBottom_toBottomOf="parent"
