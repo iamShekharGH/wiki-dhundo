@@ -18,5 +18,30 @@
         android:id="@+id/fragmentSearch"
         android:name="com.iamshekhargh.wikidhundoo.ui.search.FragmentSearch"
         android:label="fragment_search_result"
-        tools:layout="@layout/fragment_search_result" />
+        tools:layout="@layout/fragment_search_result" >
+        <action
+            android:id="@+id/action_fragmentSearch_to_fragmentSearchItem"
+            app:destination="@id/fragmentSearchItem" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentSearchItem"
+        android:name="com.iamshekhargh.wikidhundoo.ui.searchitem.FragmentSearchItem"
+        android:label="fragment_search_item"
+        tools:layout="@layout/fragment_search_item" >
+        <argument
+            android:name="pageItem"
+            app:argType="com.iamshekhargh.wikidhundoo.network.response.Page" />
+        <action
+            android:id="@+id/action_fragmentSearchItem_to_fragmentWebView"
+            app:destination="@id/fragmentWebView" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentWebView"
+        android:name="com.iamshekhargh.wikidhundoo.ui.webview.FragmentWebView"
+        android:label="fragment_webview"
+        tools:layout="@layout/fragment_webview" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

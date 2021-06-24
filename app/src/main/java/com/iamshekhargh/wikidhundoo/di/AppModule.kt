@@ -1,11 +1,17 @@
 package com.iamshekhargh.wikidhundoo.di
 
+import android.app.Application
+import androidx.room.Room
+import com.iamshekhargh.wikidhundoo.database.PagesDao
+import com.iamshekhargh.wikidhundoo.database.PagesDatabase
 import com.iamshekhargh.wikidhundoo.network.WikiApi
-import com.iamshekhargh.wikidhundoo.repository.WikiDhundooRepo
+import com.iamshekhargh.wikidhundoo.repository.WikiRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -37,6 +43,26 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRepoInstance(api: WikiApi): WikiDhundooRepo = WikiDhundooRepo(api)
+    fun provideRepoInstance2(
+        api: WikiApi,
+        dao: PagesDao,
+        scope: CoroutineScope,
+        app: Application
+    ): WikiRepository =
+        WikiRepository(api, scope, dao, app)
+
+
+    @Provides
+    @Singleton
+    fun providesDatabaseObj(app: Application) =
+        Room.databaseBuilder(app, PagesDatabase::class.java, "pages_table")
+            .fallbackToDestructiveMigration().build()
+
+    @Provides
+    fun providePagesDao(database: PagesDatabase) = database.getPagesDao()
+
+    @Provides
+    @Singleton
+    fun provideCoroutineScope() = CoroutineScope(SupervisorJob())
 
 }
